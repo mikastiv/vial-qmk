@@ -22,9 +22,8 @@
 #include "klor.h"
 
 #ifdef HAPTIC_ENABLE
-#include "drivers/haptic/drv2605l.h"
+#    include "drivers/haptic/drv2605l.h"
 #endif
-
 
 // ┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 // │ D E F I N I T I O N S                                                                                                                      │
@@ -33,10 +32,9 @@
 
 // ┌───────────────────────────────────────────────────────────┐
 // │ d e f i n e   l a y e r s                                 │
-// └───────────────────────────────────────────────────────────┘ 
+// └───────────────────────────────────────────────────────────┘
 
 enum klor_layers {
-    /* _M_XYZ = Mac Os, _W_XYZ = Win/Linux */
     _QWERTY,
     _LOWER,
     _RAISE,
@@ -71,11 +69,6 @@ enum custom_keycodes {
 #define ALT_K MT(MOD_LALT, KC_K)
 #define SHT_L MT(MOD_RSFT, KC_L)
 #define GUI_SCLN MT(MOD_LGUI, KC_SCLN)
-
-// EXTRA ├───────────────────────────────────┐
-
-#define TO_EXT  TO(_EXTRA)
-#define TO_BASE TO(_QWERTY)
 
 // ┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 // │ K E Y M A P S                                                                                                                              │
@@ -137,11 +130,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       │ r a i s e                                                 │
       └───────────────────────────────────────────────────────────┘
                 ┌─────────┬─────────┬─────────┬─────────┬─────────┐                    ┌─────────┬─────────┬─────────┬─────────┬─────────┐
-                │         │         │         │         │         │                    │   HOME  │   LEFT  │   UP    │  RIGHT  │   END   │
+                │         │         │         │         │         │                    │         │         │         │         │         │
       ┌─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤                    ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┐
-      │         │         │         │         │         │         │                    │         │   P UP  │  DOWN   │         │         │         │
+      │         │         │         │         │         │         │                    │         │   LEFT  │   UP    │  RIGHT  │  P UP   │         │
       ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤╭────────╮╭────────╮├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤
-      │  EXTRA  │         │         │         │         │         ││  MUTE  ││  MUTE  ││  PSCRN  │  P DOWN │         │         │         │         │
+      │  EXTRA  │         │         │         │         │         ││  MUTE  ││  MUTE  ││  PSCRN  │   HOME  │  DOWN   │   END   │  P DOWN │         │
       └─────────┴─────────┴─────────┼─────────┼─────────┼─────────┼╰────────╯╰────────╯┼─────────┼─────────┼─────────┼─────────┴─────────┴─────────┘
                                     │    ▼    │    ▼    │    ▼    │    ▼    ││    ▼    │    ▼    │    ▼    │    ▼    │
                                     └─────────┴─────────┴─────────┴─────────┘└─────────┴─────────┴─────────┴─────────┘
@@ -149,9 +142,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       [_RAISE] = LAYOUT_polydactyl(
     //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
-                  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,                       KC_HOME,  KC_LEFT,  KC_UP,    KC_RGHT,  KC_END,
-        XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,                       XXXXXXX,  KC_PGUP,  KC_DOWN,  XXXXXXX,  XXXXXXX,  XXXXXXX,
-        TO_EXT,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_MUTE,   KC_MUTE,  KC_PSCR,  KC_PGDN,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
+                  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,                       XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
+        XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,                       XXXXXXX,  KC_LEFT,  KC_UP,    KC_RGHT,  KC_PGUP,  XXXXXXX,
+        EXTRA,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_MUTE,   KC_MUTE,  KC_PSCR,  KC_HOME,  KC_DOWN,  KC_END,   KC_PGDN,  XXXXXXX,
                                       KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,   KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS
     ),
     /*
@@ -164,7 +157,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       ┌─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤ │╰╯╰╯╰╯╰╯╰╯╰╯╰╯╰╯│ ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┐
       │         │   F5    │   F6    │   F7    │   F8    │         ├─╯                ╰─┤         │         │         │         │         │         │
       ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤╭────────╮╭────────╮├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤
-      │  BASE   │   F9    │   F10   │   F11   │   F12   │         ││  MUTE  ││  MUTE  ││         │         │         │         │         │  RESET  │
+      │ QWERTY  │   F9    │   F10   │   F11   │   F12   │         ││  MUTE  ││  MUTE  ││         │         │         │         │         │  RESET  │
       └─────────┴─────────┴─────────┼─────────┼─────────┼─────────┼╰────────╯╰────────╯┼─────────┼─────────┼─────────┼─────────┴─────────┴─────────┘
                                     │    ▼    │    ▼    │    ▼    │    ▼    ││    ▼    │    ▼    │    ▼    │    ▼    │
                                     └─────────┴─────────┴─────────┴─────────┘└─────────┴─────────┴─────────┴─────────┘
@@ -174,7 +167,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
                   KC_F1,    KC_F2,    KC_F3,    KC_F4,    XXXXXXX,                       XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
        XXXXXXX,   KC_F5,    KC_F6,    KC_F7,    KC_F8,    XXXXXXX,                       XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
-       TO_BASE,   KC_F9,    KC_F10,   KC_F11,   KC_F12,   XXXXXXX,  KC_MUTE,   KC_MUTE,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  QK_BOOT,
+       QWERTY,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   XXXXXXX,  KC_MUTE,   KC_MUTE,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  QK_BOOT,
                                       KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,   KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS
     ),
    
@@ -557,30 +550,6 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-
-        case OS_SWAP: 
-            if (record->event.pressed) {
-                if (!keymap_config.swap_lctl_lgui) {
-                  keymap_config.swap_lctl_lgui = true;  // ─── MAC
-                  #ifdef AUDIO_ENABLE
-                    PLAY_SONG(mac_song);
-                  #endif // AUDIO_ENABLE
-                }
-                else {
-                  keymap_config.swap_lctl_lgui = false; // ─── WIN
-                  #ifdef AUDIO_ENABLE
-                    PLAY_SONG(winxp_song);
-                  #endif // AUDIO_ENABLE        
-                }
-//              #ifdef HAPTIC_ENABLE
-//                drv2605l_pulse(52);
-//              #endif // HAPTIC_ENABLE
-            eeconfig_update_keymap(keymap_config.raw);
-            clear_keyboard();  // ──── clear to prevent stuck keys    
-            return false;
-          }
-
-
 // ┌───────────────────────────────────────────────────────────┐
 // │ l a y e r                                                 │
 // └───────────────────────────────────────────────────────────┘
