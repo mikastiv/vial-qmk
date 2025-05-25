@@ -40,7 +40,7 @@ enum klor_layers {
     _QWERTY,
     _LOWER,
     _RAISE,
-    _ADJUST,
+    _EXTRA,
 };
 
 // ┌───────────────────────────────────────────────────────────┐
@@ -51,9 +51,7 @@ enum custom_keycodes {
     QWERTY = SAFE_RANGE,
     LOWER,
     RAISE,
-    ADJUST,
-    OS_SWAP,
-    MAKE_H,
+    EXTRA,
 };
 
 // ┌───────────────────────────────────────────────────────────┐
@@ -63,16 +61,21 @@ enum custom_keycodes {
 // LEFT HAND HOME ROW MODS ├───────────────────────────────────┐
 
 #define GUI_A MT(MOD_LGUI, KC_A)
-#define ALT_R MT(MOD_LALT, KC_R)
-#define CTL_S MT(MOD_LCTL, KC_S)
-#define SHT_T MT(MOD_LSFT, KC_T)
+#define CTL_F MT(MOD_LCTL, KC_F)
+#define ALT_D MT(MOD_LALT, KC_D)
+#define SHT_S MT(MOD_LSFT, KC_S)
 
 // RIGHT HAND HOME ROW MODS ├───────────────────────────────────┐
 
-#define SHT_N MT(MOD_RSFT, KC_N)
-#define CTL_E MT(MOD_LCTL, KC_E)
-#define ALT_I MT(MOD_LALT, KC_I)
-#define GUI_O MT(MOD_LGUI, KC_O)
+#define CTL_J MT(MOD_LCTL, KC_J)
+#define ALT_K MT(MOD_LALT, KC_K)
+#define SHT_L MT(MOD_RSFT, KC_L)
+#define GUI_SCLN MT(MOD_LGUI, KC_SCLN)
+
+// EXTRA ├───────────────────────────────────┐
+
+#define TO_EXT  TO(_EXTRA)
+#define TO_BASE TO(_QWERTY)
 
 // ┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 // │ K E Y M A P S                                                                                                                              │
@@ -100,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       [_QWERTY] = LAYOUT_polydactyl(
     //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
                     KC_Q,    KC_W,    KC_E,     KC_R,      KC_T,                          KC_Y,    KC_U,      KC_I,     KC_O,    KC_P,
-           KC_TAB,  KC_A,    KC_S,    KC_D,     KC_F,      KC_G,                          KC_H,    KC_J,      KC_K,     KC_L,    KC_SCLN,  KC_QUOT,
+           KC_TAB,  KC_A,    SHT_S,   ALT_D,    CTL_F,     KC_G,                          KC_H,    CTL_J,     ALT_K,    SHT_L,   KC_SCLN,  KC_QUOT,
            KC_ESC,  KC_Z,    KC_X,    KC_C,     KC_V,      KC_B,     KC_MUTE,   KC_MUTE,  KC_N,    KC_M,      KC_COMM,  KC_DOT,  KC_SLSH,  KC_ESC,
                                       KC_LGUI,  LOWER,     KC_SPC,   KC_LSFT,   KC_DEL,   KC_BSPC, RAISE,     KC_ENT
     ),
@@ -113,19 +116,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                 ┌─────────┬─────────┬─────────┬─────────┬─────────┐                    ┌─────────┬─────────┬─────────┬─────────┬─────────┐
                 │    !    │    @    │    #    │    $    │    %    │                    │    ^    │    &    │    (    │    )    │    *    │
       ┌─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤                    ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┐
-      │    _    │    1    │    2    │    3    │    4    │    5    │                    │    -    │    =    │    {    │    }    │    |    │    <    │
+      │    _    │    1    │    2    │    3    │    4    │    5    │                    │    -    │    =    │    {    │    }    │    <    │    >    │
       ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤╭────────╮╭────────╮├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤
-      │    `    │    6    │    7    │    8    │    9    │    0    ││  MUTE  ││  MUTE  ││    ~    │    +    │    [    │    ]    │    \    │    >    │
+      │    `    │    6    │    7    │    8    │    9    │    0    ││  MUTE  ││  MUTE  ││    ~    │    +    │    [    │    ]    │    \    │    |    │
       └─────────┴─────────┴─────────┼─────────┼─────────┼─────────┼╰────────╯╰────────╯┼─────────┼─────────┼─────────┼─────────┴─────────┴─────────┘
-                                    │  LGUI   │         │  SPACE  │   LSFT  ││   DEL   │  BSPCE  │         │  ENTER  │
+                                    │    ▼    │    ▼    │    ▼    │    ▼    ││    ▼    │    ▼    │    ▼    │    ▼    │
                                     └─────────┴─────────┴─────────┴─────────┘└─────────┴─────────┴─────────┴─────────┘
     */
 
       [_LOWER] = LAYOUT_polydactyl(
     //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
                    KC_EXLM, KC_AT,    KC_HASH,  KC_DLR,   KC_PERC,                       KC_CIRC,  KC_AMPR,  KC_GRV,   KC_TILD,  KC_EQL,
-         KC_UNDS,  KC_1,    KC_2,     KC_3,     KC_4,     KC_5,                          KC_MINS,  KC_EQL,   KC_LCBR,  KC_RCBR,  KC_PIPE,  KC_LT,
-         KC_GRV,   KC_6,    KC_7,     KC_8,     KC_9,     KC_0,    KC_MUTE,   KC_MUTE,   KC_TILD,  KC_PLUS,  KC_LBRC,  KC_RBRC,  KC_BSLS,  KC_GT,
+         KC_UNDS,  KC_1,    KC_2,     KC_3,     KC_4,     KC_5,                          KC_MINS,  KC_EQL,   KC_LCBR,  KC_RCBR,  KC_LT,    KC_GT,
+         KC_GRV,   KC_6,    KC_7,     KC_8,     KC_9,     KC_0,    KC_MUTE,   KC_MUTE,   KC_TILD,  KC_PLUS,  KC_LBRC,  KC_RBRC,  KC_BSLS,  KC_PIPE,
                                       KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS,   KC_TRNS,   KC_TRNS,  KC_TRNS,  KC_TRNS
     ),
     /*
@@ -134,45 +137,45 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       │ r a i s e                                                 │
       └───────────────────────────────────────────────────────────┘
                 ┌─────────┬─────────┬─────────┬─────────┬─────────┐                    ┌─────────┬─────────┬─────────┬─────────┬─────────┐
-                │ RGB_SPI │ RGB_HUI │         │         │    {    │                    │    }    │   LEFT  │   UP    │  RIGHT  │   HOME  │
+                │         │         │         │         │         │                    │   HOME  │   LEFT  │   UP    │  RIGHT  │   END   │
       ┌─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤                    ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┐
-      │ RGB_BRI │ RGB_EFF │         │         │         │    [    │                    │    ]    │         │  DOWN   │         │  PSCRN  │  P UP   │
+      │         │         │         │         │         │         │                    │         │   P UP  │  DOWN   │         │         │         │
       ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤╭────────╮╭────────╮├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤
-      │ RGB_BRD │ RGB_SPD │ RGB_HUD │         │         │    (    ││  MUTE  ││  MUTE  ││    )    │         │         │         │   END   │ P DOWN  │
+      │  EXTRA  │         │         │         │         │         ││  MUTE  ││  MUTE  ││  PSCRN  │  P DOWN │         │         │         │         │
       └─────────┴─────────┴─────────┼─────────┼─────────┼─────────┼╰────────╯╰────────╯┼─────────┼─────────┼─────────┼─────────┴─────────┴─────────┘
-                                    │         │  ADJUST │         │  LSHIFT ││  RSHIFT │         │         │  ADJUST │
+                                    │    ▼    │    ▼    │    ▼    │    ▼    ││    ▼    │    ▼    │    ▼    │    ▼    │
                                     └─────────┴─────────┴─────────┴─────────┘└─────────┴─────────┴─────────┴─────────┘
     */
 
       [_RAISE] = LAYOUT_polydactyl(
     //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
-                  RGB_SPI,  RGB_HUI,  HF_NEXT,  CK_UP,    KC_LCBR,                       KC_RCBR,  KC_LEFT,  KC_UP,    KC_RGHT,  KC_HOME,
-        RGB_VAI,  RGB_MOD,  RGB_M_B,  HF_TOGG,  CK_TOGG,  KC_LBRC,                       KC_RBRC,  KC_TRNS,  KC_DOWN,  KC_TRNS,  KC_PSCR,  KC_PGUP,
-        RGB_VAD,  RGB_SPD,  RGB_HUD,  HF_PREV,  CK_DOWN,  KC_LPRN,  KC_MUTE,   KC_MPLY,  KC_RPRN,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_END,   KC_PGDN,
-                                      KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_LSFT,   KC_RSFT,  KC_TRNS,  KC_TRNS,  KC_TRNS
+                  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,                       KC_HOME,  KC_LEFT,  KC_UP,    KC_RGHT,  KC_END,
+        XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,                       XXXXXXX,  KC_PGUP,  KC_DOWN,  XXXXXXX,  XXXXXXX,  XXXXXXX,
+        TO_EXT,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_MUTE,   KC_MUTE,  KC_PSCR,  KC_PGDN,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
+                                      KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,   KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS
     ),
     /*
       ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
       ┌───────────────────────────────────────────────────────────┐
-      │ a d j u s t                                               │
+      │ e x t r a                                                 │
       └───────────────────────────────────────────────────────────┘
                 ┌─────────┬─────────┬─────────┬─────────┬─────────┐                    ┌─────────┬─────────┬─────────┬─────────┬─────────┐
-                │ AUDIO   │ HAPTIC  │ RGB HUE │ RGB MOD │         │ ╭╮╭╮╭╮╭╮╭╮╭╮╭╮╭╮╭╮ │         │   F7    │   F8    │   F9    │   F14   │
+                │   F1    │   F2    │   F3    │   F4    │         │ ╭╮╭╮╭╮╭╮╭╮╭╮╭╮╭╮╭╮ │         │         │         │         │         │
       ┌─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤ │╰╯╰╯╰╯╰╯╰╯╰╯╰╯╰╯│ ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┐
-      │  RESET  │ DEBUG   │ QWERTY  │ RGB SAT │         │         ├─╯                ╰─┤         │   F4    │   F5    │   F6    │   F12   │   F13   │
+      │         │   F5    │   F6    │   F7    │   F8    │         ├─╯                ╰─┤         │         │         │         │         │         │
       ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤╭────────╮╭────────╮├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤
-      │  MAKE   │ OS SWAP │         │ RGB VAL │         │         ││  MUTE  ││PLY/PSE ││         │   F1    │   F2    │   F3    │   F10   │   F11   │
+      │  BASE   │   F9    │   F10   │   F11   │   F12   │         ││  MUTE  ││  MUTE  ││         │         │         │         │         │  RESET  │
       └─────────┴─────────┴─────────┼─────────┼─────────┼─────────┼╰────────╯╰────────╯┼─────────┼─────────┼─────────┼─────────┴─────────┴─────────┘
                                     │    ▼    │    ▼    │    ▼    │    ▼    ││    ▼    │    ▼    │    ▼    │    ▼    │
                                     └─────────┴─────────┴─────────┴─────────┘└─────────┴─────────┴─────────┴─────────┘
     */
    
-      [_ADJUST] = LAYOUT_polydactyl(
+      [_EXTRA] = LAYOUT_polydactyl(
     //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
-                 AU_TOGG,   HF_TOGG,  RGB_HUI,  RGB_MOD,  XXXXXXX,                       XXXXXXX,  KC_F7,    KC_F8,    KC_F9,    KC_F14,   
-       QK_BOOT,  DB_TOGG,   QWERTY,   RGB_SAI,  XXXXXXX,  XXXXXXX,                       XXXXXXX,  KC_F4,    KC_F5,    KC_F6,    KC_F12,   KC_F13,
-       MAKE_H,   OS_SWAP,   KC_TRNS,  RGB_VAI,  XXXXXXX,  XXXXXXX,  KC_MUTE,   KC_MPLY,  XXXXXXX,  KC_F1,    KC_F2,    KC_F3,    KC_F10,   KC_F11,
-                                     _______,  _______,  _______,  _______,   _______,  _______,  _______,  _______
+                  KC_F1,    KC_F2,    KC_F3,    KC_F4,    XXXXXXX,                       XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
+       XXXXXXX,   KC_F5,    KC_F6,    KC_F7,    KC_F8,    XXXXXXX,                       XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
+       TO_BASE,   KC_F9,    KC_F10,   KC_F11,   KC_F12,   XXXXXXX,  KC_MUTE,   KC_MUTE,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  QK_BOOT,
+                                      KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,   KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS
     ),
    
     /*
@@ -392,7 +395,7 @@ layer_state_t layer_state_set_kb(layer_state_t state) {
                 strcpy ( layer_state_str, "RAISE");
                 break;
             case 3:
-                strcpy ( layer_state_str, "ADJUST");
+                strcpy ( layer_state_str, "EXTRA");
                 break;
             default:
                 strcpy ( layer_state_str, "XXXXXX");
@@ -401,7 +404,7 @@ layer_state_t layer_state_set_kb(layer_state_t state) {
           strcpy ( o_text, layer_state_str );
     }
   //return state;
-    return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+    return update_tri_layer_state(state, _LOWER, _RAISE, _EXTRA);
 }
 
 
@@ -538,10 +541,9 @@ bool oled_task_kb(void) {
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case SHT_T:
-            return TAPPING_TERM - 150; 
-        case SHT_N:
-            return TAPPING_TERM - 150;
+        case SHT_S:
+        case SHT_L:
+            return TAPPING_TERM_SHIFT;
         default:
             return TAPPING_TERM;
     }
@@ -596,10 +598,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 //                #ifdef HAPTIC_ENABLE
 //                  drv2605l_pulse(17);
 //                #endif // HAPTIC_ENABLE
-                update_tri_layer(_LOWER, _RAISE, _ADJUST);
+                update_tri_layer(_LOWER, _RAISE, _EXTRA);
             } else {
                 layer_off(_LOWER);
-                update_tri_layer(_LOWER, _RAISE, _ADJUST);
+                update_tri_layer(_LOWER, _RAISE, _EXTRA);
             }
             return false;
         case RAISE:
@@ -608,20 +610,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 //                #ifdef HAPTIC_ENABLE
 //                  drv2605l_pulse(17);
 //                #endif // HAPTIC_ENABLE
-                update_tri_layer(_LOWER, _RAISE, _ADJUST);
+                update_tri_layer(_LOWER, _RAISE, _EXTRA);
             } else {
                 layer_off(_RAISE);
-                update_tri_layer(_LOWER, _RAISE, _ADJUST);
+                update_tri_layer(_LOWER, _RAISE, _EXTRA);
             }
             return false;
-        case ADJUST:
+        case EXTRA:
             if (record->event.pressed) {
-                layer_on(_ADJUST);
+                layer_on(_EXTRA);
 //                #ifdef HAPTIC_ENABLE
 //                  drv2605l_pulse(17);
 //                #endif // HAPTIC_ENABLE
             } else {
-                layer_off(_ADJUST);
+                layer_off(_EXTRA);
             }
             return false;
     }
