@@ -132,9 +132,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                 ┌─────────┬─────────┬─────────┬─────────┬─────────┐                    ┌─────────┬─────────┬─────────┬─────────┬─────────┐
                 │         │         │         │         │         │                    │         │         │         │         │         │
       ┌─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤                    ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┐
-      │         │         │         │         │         │         │                    │         │   LEFT  │   UP    │  RIGHT  │  P UP   │         │
+      │         │         │         │         │         │         │                    │  LEFT   │   DOWN  │   UP    │  RIGHT  │  P UP   │         │
       ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤╭────────╮╭────────╮├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤
-      │  EXTRA  │         │         │         │         │         ││  MUTE  ││  MUTE  ││  PSCRN  │   HOME  │  DOWN   │   END   │  P DOWN │         │
+      │  EXTRA  │         │         │         │         │         ││  MUTE  ││  MUTE  ││  PSCRN  │   HOME  │         │   END   │  P DOWN │         │
       └─────────┴─────────┴─────────┼─────────┼─────────┼─────────┼╰────────╯╰────────╯┼─────────┼─────────┼─────────┼─────────┴─────────┴─────────┘
                                     │    ▼    │    ▼    │    ▼    │    ▼    ││    ▼    │    ▼    │    ▼    │    ▼    │
                                     └─────────┴─────────┴─────────┴─────────┘└─────────┴─────────┴─────────┴─────────┘
@@ -143,8 +143,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       [_RAISE] = LAYOUT_polydactyl(
     //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
                   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,                       XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
-        XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,                       XXXXXXX,  KC_LEFT,  KC_UP,    KC_RGHT,  KC_PGUP,  XXXXXXX,
-        EXTRA,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_MUTE,   KC_MUTE,  KC_PSCR,  KC_HOME,  KC_DOWN,  KC_END,   KC_PGDN,  XXXXXXX,
+        XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,                       KC_LEFT,  KC_DOWN,  KC_UP,    KC_RGHT,  KC_PGUP,  XXXXXXX,
+        EXTRA,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_MUTE,   KC_MUTE,  KC_PSCR,  KC_HOME,  XXXXXXX,  KC_END,   KC_PGDN,  XXXXXXX,
                                       KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,   KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS
     ),
     /*
